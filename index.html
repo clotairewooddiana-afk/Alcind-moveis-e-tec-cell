@@ -681,3 +681,67 @@
   </script>
 </body>
 </html>
+.btn-grupo { display: flex; gap: 10px; }
+
+.btn-avaliar {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+  color: white;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.estrelas-media {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+  font-size: 0.9rem;
+}
+
+.estrelas { color: #f39c12; }
+
+.estrelas-input {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 5px;
+  font-size: 2rem;
+}
+
+.estrelas-input input { display: none; }
+.estrelas-input label {
+  color: #ddd;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.estrelas-input input:checked ~ label,
+.estrelas-input label:hover,
+.estrelas-input label:hover ~ label {
+  color: #f39c12;
+}
+
+.avaliacoes-lista {
+  margin-top: 30px;
+  border-top: 2px solid #eee;
+  padding-top: 20px;
+}
+
+.avaliacao-item {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.avaliacao-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.avaliacao-nome { font-weight: 600; color: #0f172a; }
+.avaliacao-midia img, .avaliacao-midia video { 
