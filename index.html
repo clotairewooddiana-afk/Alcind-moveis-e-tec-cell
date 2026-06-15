@@ -6,7 +6,7 @@
   <title>Alcind móveis tec cell</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Poppins:wght@300;400;600;700&display=swap');
-    
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
@@ -42,9 +42,9 @@
       50% { transform: scale(1.2); opacity: 0.8; }
     }
 
-    .logo-texto { position: relative; z-index: 2; }
+ .logo-texto { position: relative; z-index: 2; }
 
-    .logo-texto h1 {
+ .logo-texto h1 {
       font-family: 'Playfair Display', serif;
       font-size: 5.5rem;
       font-weight: 900;
@@ -64,14 +64,14 @@
       50% { filter: brightness(1.3); }
     }
 
-    .logo-texto .linha {
+ .logo-texto.linha {
       width: 200px;
       height: 2px;
       background: linear-gradient(90deg, transparent, #d4af37, transparent);
       margin: 20px auto;
     }
 
-    .logo-texto span {
+ .logo-texto span {
       display: block;
       font-size: 1rem;
       color: #e2e8f0;
@@ -81,7 +81,7 @@
       text-transform: uppercase;
     }
 
-    .btn-comecar {
+ .btn-comecar {
       background: linear-gradient(135deg, #d4af37 0%, #f1c40f 100%);
       color: #0f172a;
       border: none;
@@ -99,7 +99,7 @@
       letter-spacing: 2px;
     }
 
-    .btn-comecar:hover {
+ .btn-comecar:hover {
       transform: translateY(-5px) scale(1.05);
       box-shadow: 0 15px 50px rgba(212, 175, 55, 0.6);
     }
@@ -125,14 +125,14 @@
       align-items: center;
     }
 
-    .logo-header h2 {
+ .logo-header h2 {
       font-family: 'Playfair Display', serif;
       font-size: 1.6rem;
       color: #d4af37;
       margin: 0;
     }
 
-    .nav-buttons button {
+ .nav-buttons button {
       background: #d4af37;
       color: #0f172a;
       border: none;
@@ -143,7 +143,7 @@
       font-size: 1rem;
     }
 
-    .container {
+ .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 60px 20px;
@@ -157,13 +157,13 @@
       font-family: 'Playfair Display', serif;
     }
 
-    .produtos {
+ .produtos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 30px;
     }
 
-    .produto-card {
+ .produto-card {
       background: white;
       border-radius: 15px;
       overflow: hidden;
@@ -171,29 +171,31 @@
       transition: all 0.3s;
     }
 
-    .produto-card:hover {
+ .produto-card:hover {
       transform: translateY(-10px);
       box-shadow: 0 15px 40px rgba(0,0,0,0.15);
     }
 
-    .produto-img {
+ .produto-img {
       width: 100%;
       height: 250px;
       background: linear-gradient(135deg, #ecf0f1, #bdc3c7);
     }
 
-    .produto-img img {
+ .produto-img img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    .produto-info { padding: 25px; }
-    .produto-info h3 { margin-bottom: 10px; color: #0f172a; font-size: 1.3rem; }
-    .preco { font-size: 1.8rem; color: #d4af37; font-weight: 700; margin: 15px 0; }
+ .produto-info { padding: 25px; }
+ .produto-info h3 { margin-bottom: 10px; color: #0f172a; font-size: 1.3rem; }
+ .preco { font-size: 1.8rem; color: #d4af37; font-weight: 700; margin: 15px 0; }
 
-    .add-carrinho {
-      width: 100%;
+ .btn-grupo { display: flex; gap: 10px; }
+
+ .add-carrinho {
+      flex: 1;
       background: linear-gradient(135deg, #27ae60, #229954);
       color: white;
       border: none;
@@ -205,7 +207,28 @@
       transition: all 0.3s;
     }
 
-    .modal {
+ .btn-avaliar {
+      background: linear-gradient(135deg, #f39c12, #e67e22);
+      color: white;
+      border: none;
+      padding: 14px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+ .estrelas-media {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 10px 0;
+      font-size: 0.9rem;
+    }
+
+ .estrelas { color: #f39c12; }
+
+ .modal {
       display: none;
       position: fixed;
       z-index: 1000;
@@ -218,7 +241,7 @@
       backdrop-filter: blur(5px);
     }
 
-    .modal-conteudo {
+ .modal-conteudo {
       background: white;
       margin: 30px auto;
       padding: 40px;
@@ -227,7 +250,7 @@
       border-radius: 20px;
     }
 
-    .fechar {
+ .fechar {
       float: right;
       font-size: 2.5rem;
       cursor: pointer;
@@ -235,7 +258,7 @@
       line-height: 1;
     }
 
-    .item-carrinho {
+ .item-carrinho {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -243,7 +266,7 @@
       border-bottom: 1px solid #eee;
     }
 
-    .total {
+ .total {
       font-size: 1.8rem;
       font-weight: 700;
       margin: 25px 0;
@@ -251,9 +274,9 @@
       text-align: right;
     }
 
-    .form-grupo { margin-bottom: 22px; }
+ .form-grupo { margin-bottom: 22px; }
 
-    .form-grupo label {
+ .form-grupo label {
       display: block;
       margin-bottom: 8px;
       font-weight: 600;
@@ -261,7 +284,7 @@
       font-size: 0.95rem;
     }
 
-    .form-grupo input, .form-grupo select {
+ .form-grupo input,.form-grupo select,.form-grupo textarea {
       width: 100%;
       padding: 14px;
       border: 2px solid #e2e8f0;
@@ -270,7 +293,9 @@
       font-family: 'Poppins', sans-serif;
     }
 
-    .form-grupo input:focus, .form-grupo select:focus {
+ .form-grupo textarea { resize: vertical; min-height: 100px; }
+
+ .form-grupo input:focus,.form-grupo select:focus,.form-grupo textarea:focus {
       outline: none;
       border-color: #d4af37;
       box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
@@ -285,7 +310,7 @@
       border-left: 4px solid #d4af37;
     }
 
-    .btn-finalizar {
+ .btn-finalizar {
       width: 100%;
       background: linear-gradient(135deg, #d4af37, #f1c40f);
       color: #0f172a;
@@ -309,6 +334,53 @@
       font-weight: 700;
     }
 
+ .estrelas-input {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      gap: 5px;
+      font-size: 2rem;
+    }
+
+ .estrelas-input input { display: none; }
+ .estrelas-input label {
+      color: #ddd;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+ .estrelas-input input:checked ~ label,
+ .estrelas-input label:hover,
+ .estrelas-input label:hover ~ label {
+      color: #f39c12;
+    }
+
+ .avaliacoes-lista {
+      margin-top: 30px;
+      border-top: 2px solid #eee;
+      padding-top: 20px;
+    }
+
+ .avaliacao-item {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+ .avaliacao-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+ .avaliacao-nome { font-weight: 600; color: #0f172a; }
+ .avaliacao-midia img,.avaliacao-midia video {
+      max-width: 100%;
+      max-height: 200px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
     footer {
       background: #0f172a;
       color: #e2e8f0;
@@ -318,9 +390,10 @@
     }
 
     @media (max-width: 768px) {
-      .logo-texto h1 { font-size: 3rem; letter-spacing: 4px; }
-      .logo-texto span { font-size: 0.8rem; letter-spacing: 5px; }
-      .modal-conteudo { width: 95%; padding: 25px; }
+   .logo-texto h1 { font-size: 3rem; letter-spacing: 4px; }
+   .logo-texto span { font-size: 0.8rem; letter-spacing: 5px; }
+   .modal-conteudo { width: 95%; padding: 25px; }
+   .btn-grupo { flex-direction: column; }
     }
   </style>
 </head>
@@ -346,99 +419,7 @@
 
     <div class="container">
       <h2 class="titulo">Nossos Produtos</h2>
-      <div class="produtos">
-        
-        <div class="produto-card">
-          <div class="produto-img"><img src="img/sofa-canto-marrom.png" alt="Sofá">
-          <div class="produto-info">
-            <h3>Sofá de Canto Suede 5 Lugares</h3>
-            <p>Tecido suede marrom, super macio</p>
-            <div class="preco">R$ 4.299,00</div>
-            <button class="add-carrinho" onclick="addCarrinho('Sofá de Canto Suede 5 Lugares', 4299)">Adicionar ao Carrinho</button>
-          </div>
-        </div>
-
-        <div class="produto-card">
-          <div class="produto-img"><img src="img/sofa-verde-duplo.png" alt="Sofás">
-          <div class="produto-info">
-            <h3>Conjunto Sofás Verde Musgo</h3>
-            <p>2 sofás individuais + almofadas</p>
-            <div class="preco">R$ 2.899,00</div>
-            <button class="add-carrinho" onclick="addCarrinho('Conjunto Sofás Verde Musgo', 2899)">Adicionar ao Carrinho</button>
-          </div>
-        </div>
-
-        <div class="produto-card">
-          <div class="produto-img"><img src="img/poltrona-madeira.png" alt="Poltrona">
-          <div class="produto-info">
-            <h3>Poltrona Design Madeira</h3>
-            <p>Estrutura em madeira maciça</p>
-            <div class="preco">R$ 1.499,00</div>
-            <button class="add-carrinho" onclick="addCarrinho('Poltrona Design Madeira', 1499)">Adicionar ao Carrinho</button>
-          </div>
-        </div>
-
-        <div class="produto-card">
-          <div class="produto-img"><img src="img/poltronas-bege.png" alt="Poltronas">
-          <div class="produto-info">
-            <h3>Conjunto 3 Poltronas Bege</h3>
-            <p>1 sofá 2 lugares + 2 poltronas</p>
-            <div class="preco">R$ 3.599,00</div>
-            <button class="add-carrinho" onclick="addCarrinho('Conjunto 3 Poltronas Bege', 3599)">Adicionar ao Carrinho</button>
-          </div>
-        </div>
-
-        <div class="produto-card">
-          <div class="produto-img"><img src="img/poltrona-preta.png" alt="Poltrona Preta">
-          <div class="produto-info">
-            <h3>Poltrona Couro + Puff</h3>
-            <p>Couro ecológico preto</p>
-            <div class="preco">R$ 1.299,00</div>
-            <button class="add-carrinho" onclick="addCarrinho('Poltrona Couro + Puff', 1299)">Adicionar ao Carrinho</button>
-          </div>
-        </div>
-
-        <div class="produto-card">
-          <div class="produto-img"><img src="img/poltronas-rosa.png" alt="Poltronas Rosa">
-          <div class="produto-info">
-            <h3>Conjunto Poltronas Rosa Pink</h3>
-            <p>2 poltronas em veludo pink</p>
-            <div class="preco">R$ 2.199,00</div>
-            <button class="add-carrinho" onclick="addCarrinho('Conjunto Poltronas Rosa Pink', 2199)">Adicionar ao Carrinho</button>
-          </div>
-        </div>
-
-        <div class="produto-card">
-          <div class="produto-img"><img src="celular.png" alt="Smartphone"></div>
-          <div class="produto-info">
-            <h3>Smartphone 128GB</h3>
-            <p>Tela 6.5", câmera tripla</p>
-            <div class="preco">R$ 1.899,00</div>
-            <button class="add-carrinho" onclick="addCarrinho('Smartphone 128GB', 1899)">Adicionar ao Carrinho</button>
-          </div>
-        </div>
-
-        <div class="produto-card">
-          <div class="produto-img"><img src="capa-celular.png" alt="Capa"></div>
-          <div class="produto-info">
-            <h3>Capa de Celular Premium</h3>
-            <p>Silicone anti-impacto</p>
-            <div class="preco">R$ 89,90</div>
-            <button class="add-carrinho" onclick="addCarrinho('Capa de Celular Premium', 89.90)">Adicionar ao Carrinho</button>
-          </div>
-        </div>
-
-        <div class="produto-card">
-          <div class="produto-img"><img src="microfone.png" alt="Microfone"></div>
-          <div class="produto-info">
-            <h3>Microfone Condensador USB</h3>
-            <p>Profissional para gravação</p>
-            <div class="preco">R$ 299,00</div>
-            <button class="add-carrinho" onclick="addCarrinho('Microfone Condensador USB', 299)">Adicionar ao Carrinho</button>
-          </div>
-        </div>
-
-      </div>
+      <div class="produtos" id="lista-produtos"></div>
     </div>
 
     <footer>
@@ -452,7 +433,7 @@
     <div class="modal-conteudo">
       <span class="fechar" onclick="fecharCarrinho()">&times;</span>
       <h2 style="margin-bottom: 25px; color: #0f172a;">Finalizar Pedido</h2>
-      
+
       <div id="itens-carrinho"></div>
       <div class="total" id="total-carrinho">Total: R$ 0,00</div>
 
@@ -486,12 +467,12 @@
           <strong>📍 Endereço para Retirada:</strong><br>
           Av. Protásio Alves, 1073<br>
           Bairro Rio Branco - Porto Alegre/RS<br>
-          <small>Horário: Seg a Sex 8h às 17h | Sáb 9h às 16h</small>
+          <small>Horário: Seg a Sex 9h às 18h | Sáb 9h às 13h</small>
         </div>
 
         <div id="campos-endereco">
           <div class="form-grupo">
-            <label>CEP*</label>
+            <label>CEP *</label>
             <input type="text" id="cep" placeholder="00000-000" maxlength="9" onblur="buscarCEP()">
           </div>
 
@@ -531,14 +512,226 @@
     </div>
   </div>
 
+  <div id="modalAvaliacao" class="modal">
+    <div class="modal-conteudo">
+      <span class="fechar" onclick="fecharAvaliacao()">&times;</span>
+      <h2 style="margin-bottom: 25px; color: #0f172a;" id="titulo-avaliacao">Avaliar Produto</h2>
+
+      <form id="formAvaliacao" onsubmit="salvarAvaliacao(event)">
+        <input type="hidden" id="produto-id">
+
+        <div class="form-grupo">
+          <label>Seu Nome *</label>
+          <input type="text" id="nome-avaliador" required>
+        </div>
+
+        <div class="form-grupo">
+          <label>Sua Avaliação *</label>
+          <div class="estrelas-input">
+            <input type="radio" id="estrela5" name="estrelas" value="5" required>
+            <label for="estrela5">★</label>
+            <input type="radio" id="estrela4" name="estrelas" value="4">
+            <label for="estrela4">★</label>
+            <input type="radio" id="estrela3" name="estrelas" value="3">
+            <label for="estrela3">★</label>
+            <input type="radio" id="estrela2" name="estrelas" value="2">
+            <label for="estrela2">★</label>
+            <input type="radio" id="estrela1" name="estrelas" value="1">
+            <label for="estrela1">★</label>
+          </div>
+        </div>
+
+        <div class="form-grupo">
+          <label>Comentário</label>
+          <textarea id="comentario" placeholder="Conte como foi sua experiência com o produto..."></textarea>
+        </div>
+
+        <div class="form-grupo">
+          <label>Foto ou Vídeo do Produto</label>
+          <input type="file" id="midia-avaliacao" accept="image/*,video/*">
+          <small style="color: #666;">Opcional: Mostre o produto que você recebeu</small>
+        </div>
+
+        <button type="submit" class="btn-finalizar">Enviar Avaliação</button>
+      </form>
+
+      <div class="avaliacoes-lista" id="lista-avaliacoes"></div>
+    </div>
+  </div>
+
   <script>
     let carrinho = [];
+    let produtoAtual = null;
+
+    const produtos = [
+      {id: 1, nome: 'Sofá de Canto Suede 5 Lugares', preco: 4299, img: 'sofa-canto-marrom.png', desc: 'Tecido suede marrom, super macio'},
+      {id: 2, nome: 'Conjunto Sofás Verde Musgo', preco: 2899, img: 'sofa-verde-duplo.png', desc: '2 sofás individuais + almofadas'},
+      {id: 3, nome: 'Poltrona Design Madeira', preco: 1499, img: 'poltrona-madeira.png', desc: 'Estrutura em madeira maciça'},
+      {id: 4, nome: 'Conjunto 3 Poltronas Bege', preco: 3599, img: 'poltronas-bege.png', desc: '1 sofá 2 lugares + 2 poltronas'},
+      {id: 5, nome: 'Poltrona Couro + Puff', preco: 1299, img: 'poltrona-preta.png', desc: 'Couro ecológico preto'},
+      {id: 6, nome: 'Conjunto Poltronas Rosa Pink', preco: 2199, img: 'poltronas-rosa.png', desc: '2 poltronas em veludo pink'},
+      {id: 7, nome: 'Smartphone 128GB', preco: 1899, img: 'celular.png', desc: 'Tela 6.5", câmera tripla'},
+      {id: 8, nome: 'Capa de Celular Premium', preco: 89.90, img: 'capa-celular.png', desc: 'Silicone anti-impacto'},
+      {id: 9, nome: 'Microfone Condensador USB', preco: 299, img: 'microfone.png', desc: 'Profissional para gravação'}
+    ];
 
     function entrarNoSite() {
       document.getElementById('entrada').style.display = 'none';
       document.getElementById('site').style.display = 'block';
       window.scrollTo(0, 0);
+      carregarProdutos();
     }
+
+    function carregarProdutos() {
+      let html = '';
+      produtos.forEach(p => {
+        let avaliacoes = getAvaliacoes(p.id);
+        let media = calcularMedia(avaliacoes);
+        let totalAv = avaliacoes.length;
+
+        html += `
+          <div class="produto-card" data-id="${p.id}">
+            <div class="produto-img"><img src="${p.img}" alt="${p.nome}"></div>
+            <div class="produto-info">
+              <h3>${p.nome}</h3>
+              <p>${p.desc}</p>
+              <div class="estrelas-media" id="media-${p.id}">
+                <span class="estrelas">${gerarEstrelas(media)}</span>
+                <span>${media.toFixed(1)} (${totalAv} ${totalAv === 1? 'avaliação' : 'avaliações'})</span>
+              </div>
+              <div class="preco">R$ ${p.preco.toFixed(2)}</div>
+              <div class="btn-grupo">
+                <button class="add-carrinho" onclick="addCarrinho('${p.nome}', ${p.preco})">Adicionar</button>
+                <button class="btn-avaliar" onclick="abrirAvaliacao(${p.id})">⭐ Avaliar</button>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      document.getElementById('lista-produtos').innerHTML = html;
+    }
+
+    function gerarEstrelas(nota) {
+      let estrelas = '';
+      for(let i = 1; i <= 5; i++) {
+        estrelas += i <= Math.round(nota)? '★' : '☆';
+      }
+      return estrelas;
+    }
+
+    function calcularMedia(avaliacoes) {
+      if(avaliacoes.length === 0) return 0;
+      let soma = avaliacoes.reduce((acc, av) => acc + av.estrelas, 0);
+      return soma / avaliacoes.length;
+    }
+
+    function getAvaliacoes(produtoId) {
+      let dados = localStorage.getItem(`avaliacoes_${produtoId}`);
+      return dados? JSON.parse(dados) : [];
+    }
+
+    function salvarAvaliacaoStorage(produtoId, avaliacao) {
+      let avaliacoes = getAvaliacoes(produtoId);
+      avaliacoes.push(avaliacao);
+      localStorage.setItem(`avaliacoes_${produtoId}`, JSON.stringify(avaliacoes));
+    }
+
+    function abrirAvaliacao(produtoId) {
+      produtoAtual = produtoId;
+      let produto = produtos.find(p => p.id === produtoId);
+      document.getElementById('titulo-avaliacao').textContent = `Avaliar: ${produto.nome}`;
+      document.getElementById('produto-id').value = produtoId;
+      document.getElementById('formAvaliacao').reset();
+      mostrarAvaliacoes(produtoId);
+      document.getElementById('modalAvaliacao').style.display = 'block';
+    }
+
+    function fecharAvaliacao() {
+      document.getElementById('modalAvaliacao').style.display = 'none';
+      atualizarMedias();
+    }
+
+    function mostrarAvaliacoes(produtoId) {
+      let avaliacoes = getAvaliacoes(produtoId);
+      let html = '<h3 style="margin-bottom: 20px;">Avaliações dos Clientes</h3>';
+
+      if(avaliacoes.length === 0) {
+        html += '<p style="color: #666;">Seja o primeiro a avaliar!</p>';
+      } else {
+        avaliacoes.reverse().forEach(av => {
+          html += `
+            <div class="avaliacao-item">
+              <div class="avaliacao-header">
+                <span class="avaliacao-nome">${av.nome}</span>
+                <span class="estrelas">${gerarEstrelas(av.estrelas)}</span>
+              </div>
+              ${av.comentario? `<p>${av.comentario}</p>` : ''}
+              ${av.midia? `<div class="avaliacao-midia">${av.tipo === 'video'? `<video controls src="${av.midia}"></video>` : `<img src="${av.midia}" alt="Foto do cliente">`}</div>` : ''}
+              <small style="color: #999;">${av.data}</small>
+            </div>
+          `;
+        });
+      }
+
+      document.getElementById('lista-avaliacoes').innerHTML = html;
+    }
+
+    function salvarAvaliacao(e) {
+      e.preventDefault();
+
+      let produtoId = parseInt(document.getElementById('produto-id').value);
+      let nome = document.getElementById('nome-avaliador').value;
+      let estrelas = parseInt(document.querySelector('input[name="estrelas"]:checked').value);
+      let comentario = document.getElementById('comentario').value;
+      let arquivo = document.getElementById('midia-avaliacao').files[0];
+
+      let avaliacao = {
+        nome: nome,
+        estrelas: estrelas,
+        comentario: comentario,
+        data: new Date().toLocaleDateString('pt-BR'),
+        midia: null,
+        tipo: null
+      };
+
+      if(arquivo) {
+        let reader = new FileReader();
+        reader.onload = function(e) {
+          avaliacao.midia = e.target.result;
+          avaliacao.tipo = arquivo.type.startsWith('video')? 'video' : 'image';
+          salvarAvaliacaoStorage(produtoId, avaliacao);
+          alert('✓ Avaliação enviada com sucesso!');
+          mostrarAvaliacoes(produtoId);
+          document.getElementById('formAvaliacao').reset();
+        };
+        reader.readAsDataURL(arquivo);
+      } else {
+        salvarAvaliacaoStorage(produtoId, avaliacao);
+        alert('✓ Avaliação enviada com sucesso!');
+        mostrarAvaliacoes(produtoId);
+        document.getElementById('formAvaliacao').reset();
+      }
+    }
+
+    function atualizarMedias() {
+      document.querySelectorAll('.produto-card').forEach(card => {
+        let id = card.getAttribute('data-id');
+        if(id) {
+          let avaliacoes = getAvaliacoes(id);
+          let media = calcularMedia(avaliacoes);
+          let totalAv = avaliacoes.length;
+          let el = document.getElementById(`media-${id}`);
+          if(el) {
+            el.innerHTML = `
+              <span class="estrelas">${gerarEstrelas(media)}</span>
+              <span>${media.toFixed(1)} (${totalAv} ${totalAv === 1? 'avaliação' : 'avaliações'})</span>
+            `;
+          }
+        }
+      });
+    }
+
+    window.addEventListener('load', atualizarMedias);
 
     function addCarrinho(nome, preco) {
       carrinho.push({nome, preco});
@@ -566,19 +759,19 @@
     function mostrarItensCarrinho() {
       let html = '';
       let total = 0;
-      
+
       carrinho.forEach((item, index) => {
         html += `
           <div class="item-carrinho">
             <span style="font-weight: 500;">${item.nome}</span>
-            <span>R$ ${item.preco.toFixed(2)} 
+            <span>R$ ${item.preco.toFixed(2)}
               <button onclick="removerItem(${index})" style="margin-left:15px; color:#e74c3c; background:none; border:none; cursor:pointer; font-size:1.2rem;">✕</button>
             </span>
           </div>
         `;
         total += item.preco;
       });
-      
+
       document.getElementById('itens-carrinho').innerHTML = html;
       document.getElementById('total-carrinho').textContent = 'Total: R$ ' + total.toFixed(2);
     }
@@ -594,7 +787,7 @@
       let tipo = document.getElementById('tipo-entrega').value;
       let camposEndereco = document.getElementById('campos-endereco');
       let infoRetirada = document.getElementById('info-retirada');
-      
+
       if (tipo === 'Retirada na loja') {
         camposEndereco.style.display = 'none';
         infoRetirada.style.display = 'block';
@@ -614,11 +807,11 @@
 
     function buscarCEP() {
       let cep = document.getElementById('cep').value.replace(/\D/g, '');
-      if (cep.length !== 8) return;
-      
+      if (cep.length!== 8) return;
+
       fetch(`https://viacep.com.br/ws/${cep}/json/`)
-        .then(res => res.json())
-        .then(data => {
+     .then(res => res.json())
+     .then(data => {
           if (!data.erro) {
             document.getElementById('endereco').value = data.logradouro;
             document.getElementById('bairro').value = data.bairro;
@@ -628,29 +821,29 @@
 
     function finalizarPedido(e) {
       e.preventDefault();
-      
+
       let nome = document.getElementById('nome').value;
       let email = document.getElementById('email').value;
       let telefone = document.getElementById('telefone').value;
       let tipoEntrega = document.getElementById('tipo-entrega').value;
       let pagamento = document.getElementById('pagamento').value;
-      
+
       let total = carrinho.reduce((sum, item) => sum + item.preco, 0);
       let itens = carrinho.map(item => `• ${item.nome}: R$ ${item.preco.toFixed(2)}`).join('%0A');
-      
+
       let msg = `*NOVO PEDIDO - ALCIND MÓVEIS TEC CELL*%0A%0A`;
       msg += `*Cliente:* ${nome}%0A`;
       msg += `*Email:* ${email}%0A`;
       msg += `*Telefone:* ${telefone}%0A%0A`;
       msg += `*Tipo de Entrega:* ${tipoEntrega}%0A`;
-      
+
       if (tipoEntrega === 'Entrega no endereço') {
         let cep = document.getElementById('cep').value;
         let endereco = document.getElementById('endereco').value;
         let numero = document.getElementById('numero').value;
         let complemento = document.getElementById('complemento').value;
         let bairro = document.getElementById('bairro').value;
-        
+
         msg += `%0A*Endereço de Entrega:*%0A${endereco}, ${numero}%0A`;
         msg += `${bairro} - CEP: ${cep}%0A`;
         if (complemento) msg += `Complemento: ${complemento}%0A`;
@@ -659,15 +852,15 @@
         msg += `Av. Protásio Alves, 1073%0A`;
         msg += `Rio Branco - Porto Alegre/RS%0A`;
       }
-      
+
       msg += `%0A*Itens do Pedido:*%0A${itens}%0A%0A`;
       msg += `*TOTAL: R$ ${total.toFixed(2)}*%0A`;
       msg += `*Forma de Pagamento:* ${pagamento}%0A%0A`;
       msg += `Aguardo confirmação!`;
-      
-      let numeroWhatsApp = '5551999999999'; // TROCA PELO SEU NÚMERO COM DDD 51
+
+      let numeroWhatsApp = '+555185486974'; 
       window.open(`https://wa.me/${numeroWhatsApp}?text=${msg}`, '_blank');
-      
+
       carrinho = [];
       atualizarContador();
       fecharCarrinho();
@@ -675,23 +868,11 @@
     }
 
     window.onclick = function(event) {
-      let modal = document.getElementById('modalCarrinho');
-      if (event.target == modal) fecharCarrinho();
-    }.btn-grupo { display: flex; gap: 10px; }
-.btn-avaliar { background: linear-gradient(135deg, #f39c12, #e67e22); color: white; border: none; padding: 14px 20px; border-radius: 10px; cursor: pointer; font-size: 1rem; font-weight: 600; }
-.estrelas-media { display: flex; align-items: center; gap: 8px; margin: 10px 0; font-size: 0.9rem; }
-.estrelas { color: #f39c12; }
-.estrelas-input { display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 5px; font-size: 2rem; }
-.estrelas-input input { display: none; }
-.estrelas-input label { color: #ddd; cursor: pointer; transition: all 0.2s; }
-.estrelas-input input:checked ~ label, .estrelas-input label:hover, .estrelas-input label:hover ~ label { color: #f39c12; }
-.avaliacoes-lista { margin-top: 30px; border-top: 2px solid #eee; padding-top: 20px; }
-.avaliacao-item { background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 15px; }
-.avaliacao-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
-.avaliacao-nome { font-weight: 600; color: #0f172a; }
-.avaliacao-midia img, .avaliacao-midia video { max-width: 100%; max-height: 200px; border-radius: 8px; margin-top: 10px; }
-</style>
-</head>
+      let modalCarrinho = document.getElementById('modalCarrinho');
+      let modalAvaliacao = document.getElementById('modalAvaliacao');
+      if (event.target == modalCarrinho) fecharCarrinho();
+      if (event.target == modalAvaliacao) fecharAvaliacao();
+    }
   </script>
 </body>
 </html>
