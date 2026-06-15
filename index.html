@@ -42,9 +42,9 @@
       50% { transform: scale(1.2); opacity: 0.8; }
     }
 
- .logo-texto { position: relative; z-index: 2; }
+.logo-texto { position: relative; z-index: 2; }
 
- .logo-texto h1 {
+.logo-texto h1 {
       font-family: 'Playfair Display', serif;
       font-size: 5.5rem;
       font-weight: 900;
@@ -64,14 +64,14 @@
       50% { filter: brightness(1.3); }
     }
 
- .logo-texto.linha {
+.logo-texto.linha {
       width: 200px;
       height: 2px;
       background: linear-gradient(90deg, transparent, #d4af37, transparent);
       margin: 20px auto;
     }
 
- .logo-texto span {
+.logo-texto span {
       display: block;
       font-size: 1rem;
       color: #e2e8f0;
@@ -81,7 +81,7 @@
       text-transform: uppercase;
     }
 
- .btn-comecar {
+.btn-comecar {
       background: linear-gradient(135deg, #d4af37 0%, #f1c40f 100%);
       color: #0f172a;
       border: none;
@@ -99,7 +99,7 @@
       letter-spacing: 2px;
     }
 
- .btn-comecar:hover {
+.btn-comecar:hover {
       transform: translateY(-5px) scale(1.05);
       box-shadow: 0 15px 50px rgba(212, 175, 55, 0.6);
     }
@@ -125,14 +125,14 @@
       align-items: center;
     }
 
- .logo-header h2 {
+.logo-header h2 {
       font-family: 'Playfair Display', serif;
       font-size: 1.6rem;
       color: #d4af37;
       margin: 0;
     }
 
- .nav-buttons button {
+.nav-buttons button {
       background: #d4af37;
       color: #0f172a;
       border: none;
@@ -143,7 +143,7 @@
       font-size: 1rem;
     }
 
- .container {
+.container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 60px 20px;
@@ -157,13 +157,13 @@
       font-family: 'Playfair Display', serif;
     }
 
- .produtos {
+.produtos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 30px;
     }
 
- .produto-card {
+.produto-card {
       background: white;
       border-radius: 15px;
       overflow: hidden;
@@ -171,30 +171,30 @@
       transition: all 0.3s;
     }
 
- .produto-card:hover {
+.produto-card:hover {
       transform: translateY(-10px);
       box-shadow: 0 15px 40px rgba(0,0,0,0.15);
     }
 
- .produto-img {
+.produto-img {
       width: 100%;
       height: 250px;
       background: linear-gradient(135deg, #ecf0f1, #bdc3c7);
     }
 
- .produto-img img {
+.produto-img img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
- .produto-info { padding: 25px; }
- .produto-info h3 { margin-bottom: 10px; color: #0f172a; font-size: 1.3rem; }
- .preco { font-size: 1.8rem; color: #d4af37; font-weight: 700; margin: 15px 0; }
+.produto-info { padding: 25px; }
+.produto-info h3 { margin-bottom: 10px; color: #0f172a; font-size: 1.3rem; }
+.preco { font-size: 1.8rem; color: #d4af37; font-weight: 700; margin: 15px 0; }
 
- .btn-grupo { display: flex; gap: 10px; }
+.btn-grupo { display: flex; gap: 10px; }
 
- .add-carrinho {
+.add-carrinho {
       flex: 1;
       background: linear-gradient(135deg, #27ae60, #229954);
       color: white;
@@ -207,7 +207,7 @@
       transition: all 0.3s;
     }
 
- .btn-avaliar {
+.btn-avaliar {
       background: linear-gradient(135deg, #f39c12, #e67e22);
       color: white;
       border: none;
@@ -218,17 +218,38 @@
       font-weight: 600;
     }
 
- .estrelas-media {
+.estrelas-media {
       display: flex;
       align-items: center;
       gap: 8px;
       margin: 10px 0;
       font-size: 0.9rem;
+      cursor: pointer;
     }
 
- .estrelas { color: #f39c12; }
+.estrelas { color: #f39c12; }
 
- .modal {
+.ver-avaliacoes {
+      font-size: 0.85rem;
+      color: #3498db;
+      text-decoration: underline;
+      cursor: pointer;
+      margin-top: 8px;
+      display: inline-block;
+    }
+
+.lista-avaliacoes-produto {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #eee;
+      display: none;
+    }
+
+.lista-avaliacoes-produto.ativo {
+      display: block;
+    }
+
+.modal {
       display: none;
       position: fixed;
       z-index: 1000;
@@ -241,7 +262,7 @@
       backdrop-filter: blur(5px);
     }
 
- .modal-conteudo {
+.modal-conteudo {
       background: white;
       margin: 30px auto;
       padding: 40px;
@@ -250,7 +271,7 @@
       border-radius: 20px;
     }
 
- .fechar {
+.fechar {
       float: right;
       font-size: 2.5rem;
       cursor: pointer;
@@ -258,7 +279,7 @@
       line-height: 1;
     }
 
- .item-carrinho {
+.item-carrinho {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -266,7 +287,7 @@
       border-bottom: 1px solid #eee;
     }
 
- .total {
+.total {
       font-size: 1.8rem;
       font-weight: 700;
       margin: 25px 0;
@@ -274,9 +295,9 @@
       text-align: right;
     }
 
- .form-grupo { margin-bottom: 22px; }
+.form-grupo { margin-bottom: 22px; }
 
- .form-grupo label {
+.form-grupo label {
       display: block;
       margin-bottom: 8px;
       font-weight: 600;
@@ -284,7 +305,7 @@
       font-size: 0.95rem;
     }
 
- .form-grupo input,.form-grupo select,.form-grupo textarea {
+.form-grupo input,.form-grupo select,.form-grupo textarea {
       width: 100%;
       padding: 14px;
       border: 2px solid #e2e8f0;
@@ -293,9 +314,9 @@
       font-family: 'Poppins', sans-serif;
     }
 
- .form-grupo textarea { resize: vertical; min-height: 100px; }
+.form-grupo textarea { resize: vertical; min-height: 100px; }
 
- .form-grupo input:focus,.form-grupo select:focus,.form-grupo textarea:focus {
+.form-grupo input:focus,.form-grupo select:focus,.form-grupo textarea:focus {
       outline: none;
       border-color: #d4af37;
       box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
@@ -310,7 +331,7 @@
       border-left: 4px solid #d4af37;
     }
 
- .btn-finalizar {
+.btn-finalizar {
       width: 100%;
       background: linear-gradient(135deg, #d4af37, #f1c40f);
       color: #0f172a;
@@ -334,7 +355,7 @@
       font-weight: 700;
     }
 
- .estrelas-input {
+.estrelas-input {
       display: flex;
       flex-direction: row-reverse;
       justify-content: flex-end;
@@ -342,39 +363,39 @@
       font-size: 2rem;
     }
 
- .estrelas-input input { display: none; }
- .estrelas-input label {
+.estrelas-input input { display: none; }
+.estrelas-input label {
       color: #ddd;
       cursor: pointer;
       transition: all 0.2s;
     }
- .estrelas-input input:checked ~ label,
- .estrelas-input label:hover,
- .estrelas-input label:hover ~ label {
+.estrelas-input input:checked ~ label,
+.estrelas-input label:hover,
+.estrelas-input label:hover ~ label {
       color: #f39c12;
     }
 
- .avaliacoes-lista {
+.avaliacoes-lista {
       margin-top: 30px;
       border-top: 2px solid #eee;
       padding-top: 20px;
     }
 
- .avaliacao-item {
+.avaliacao-item {
       background: #f8f9fa;
       padding: 15px;
       border-radius: 10px;
       margin-bottom: 15px;
     }
 
- .avaliacao-header {
+.avaliacao-header {
       display: flex;
       justify-content: space-between;
       margin-bottom: 10px;
     }
 
- .avaliacao-nome { font-weight: 600; color: #0f172a; }
- .avaliacao-midia img,.avaliacao-midia video {
+.avaliacao-nome { font-weight: 600; color: #0f172a; }
+.avaliacao-midia img,.avaliacao-midia video {
       max-width: 100%;
       max-height: 200px;
       border-radius: 8px;
@@ -390,10 +411,10 @@
     }
 
     @media (max-width: 768px) {
-   .logo-texto h1 { font-size: 3rem; letter-spacing: 4px; }
-   .logo-texto span { font-size: 0.8rem; letter-spacing: 5px; }
-   .modal-conteudo { width: 95%; padding: 25px; }
-   .btn-grupo { flex-direction: column; }
+  .logo-texto h1 { font-size: 3rem; letter-spacing: 4px; }
+  .logo-texto span { font-size: 0.8rem; letter-spacing: 5px; }
+  .modal-conteudo { width: 95%; padding: 25px; }
+  .btn-grupo { flex-direction: column; }
     }
   </style>
 </head>
@@ -564,10 +585,10 @@
     let produtoAtual = null;
 
     const produtos = [
-      {id: 1, nome: 'Sofá de Canto Suede 5 Lugares', preco: 4299, img: 'sofa-canto-marrom.png', desc: 'Tecido suede marrom, super macio'},
-      {id: 2, nome: 'Conjunto Sofás Verde Musgo', preco: 2899, img: 'sofa-verde-duplo.png', desc: '2 sofás individuais + almofadas'},
+      {id: 1, nome: 'Sofá de Canto Suede 5 Lugares', preco: 750, <img src="img/sofa-canto-marrom.png"alt="Sofá">, desc: 'Tecido suede marrom, super macio'},
+      {id: 2, nome: 'Conjunto Sofás Verde Musgo', preco: 650, img: 'sofa-verde-duplo.png', desc: '2sofás individuais + almofadas'},
       {id: 3, nome: 'Poltrona Design Madeira', preco: 1499, img: 'poltrona-madeira.png', desc: 'Estrutura em madeira maciça'},
-      {id: 4, nome: 'Conjunto 3 Poltronas Bege', preco: 3599, img: 'poltronas-bege.png', desc: '1 sofá 2 lugares + 2 poltronas'},
+      {id: 4, nome: 'Conjunto 3 Poltronas Bege', preco: 650, img: 'poltronas-bege.png', desc: '1 sofá 2 lugares + 2 poltronas'},
       {id: 5, nome: 'Poltrona Couro + Puff', preco: 1299, img: 'poltrona-preta.png', desc: 'Couro ecológico preto'},
       {id: 6, nome: 'Conjunto Poltronas Rosa Pink', preco: 2199, img: 'poltronas-rosa.png', desc: '2 poltronas em veludo pink'},
       {id: 7, nome: 'Smartphone 128GB', preco: 1899, img: 'celular.png', desc: 'Tela 6.5", câmera tripla'},
@@ -595,9 +616,13 @@
             <div class="produto-info">
               <h3>${p.nome}</h3>
               <p>${p.desc}</p>
-              <div class="estrelas-media" id="media-${p.id}">
+              <div class="estrelas-media" onclick="toggleAvaliacoes(${p.id})">
                 <span class="estrelas">${gerarEstrelas(media)}</span>
                 <span>${media.toFixed(1)} (${totalAv} ${totalAv === 1? 'avaliação' : 'avaliações'})</span>
+              </div>
+              ${totalAv > 0? `<span class="ver-avaliacoes" onclick="toggleAvaliacoes(${p.id})">Ver avaliações ▼</span>` : ''}
+              <div class="lista-avaliacoes-produto" id="avaliacoes-${p.id}">
+                ${renderizarAvaliacoesProduto(avaliacoes)}
               </div>
               <div class="preco">R$ ${p.preco.toFixed(2)}</div>
               <div class="btn-grupo">
@@ -636,6 +661,30 @@
       localStorage.setItem(`avaliacoes_${produtoId}`, JSON.stringify(avaliacoes));
     }
 
+    function renderizarAvaliacoesProduto(avaliacoes) {
+      if(avaliacoes.length === 0) return '';
+      let html = '';
+      avaliacoes.slice().reverse().forEach(av => {
+        html += `
+          <div class="avaliacao-item">
+            <div class="avaliacao-header">
+              <span class="avaliacao-nome">${av.nome}</span>
+              <span class="estrelas">${gerarEstrelas(av.estrelas)}</span>
+            </div>
+            ${av.comentario? `<p>${av.comentario}</p>` : ''}
+            ${av.midia? `<div class="avaliacao-midia">${av.tipo === 'video'? `<video controls src="${av.midia}"></video>` : `<img src="${av.midia}" alt="Foto do cliente">`}</div>` : ''}
+            <small style="color: #999;">${av.data}</small>
+          </div>
+        `;
+      });
+      return html;
+    }
+
+    function toggleAvaliacoes(produtoId) {
+      let el = document.getElementById(`avaliacoes-${produtoId}`);
+      if(el) el.classList.toggle('ativo');
+    }
+
     function abrirAvaliacao(produtoId) {
       produtoAtual = produtoId;
       let produto = produtos.find(p => p.id === produtoId);
@@ -648,7 +697,7 @@
 
     function fecharAvaliacao() {
       document.getElementById('modalAvaliacao').style.display = 'none';
-      atualizarMedias();
+      carregarProdutos();
     }
 
     function mostrarAvaliacoes(produtoId) {
@@ -658,7 +707,7 @@
       if(avaliacoes.length === 0) {
         html += '<p style="color: #666;">Seja o primeiro a avaliar!</p>';
       } else {
-        avaliacoes.reverse().forEach(av => {
+        avaliacoes.slice().reverse().forEach(av => {
           html += `
             <div class="avaliacao-item">
               <div class="avaliacao-header">
@@ -703,6 +752,7 @@
           alert('✓ Avaliação enviada com sucesso!');
           mostrarAvaliacoes(produtoId);
           document.getElementById('formAvaliacao').reset();
+          carregarProdutos();
         };
         reader.readAsDataURL(arquivo);
       } else {
@@ -710,28 +760,9 @@
         alert('✓ Avaliação enviada com sucesso!');
         mostrarAvaliacoes(produtoId);
         document.getElementById('formAvaliacao').reset();
+        carregarProdutos();
       }
     }
-
-    function atualizarMedias() {
-      document.querySelectorAll('.produto-card').forEach(card => {
-        let id = card.getAttribute('data-id');
-        if(id) {
-          let avaliacoes = getAvaliacoes(id);
-          let media = calcularMedia(avaliacoes);
-          let totalAv = avaliacoes.length;
-          let el = document.getElementById(`media-${id}`);
-          if(el) {
-            el.innerHTML = `
-              <span class="estrelas">${gerarEstrelas(media)}</span>
-              <span>${media.toFixed(1)} (${totalAv} ${totalAv === 1? 'avaliação' : 'avaliações'})</span>
-            `;
-          }
-        }
-      });
-    }
-
-    window.addEventListener('load', atualizarMedias);
 
     function addCarrinho(nome, preco) {
       carrinho.push({nome, preco});
@@ -810,8 +841,8 @@
       if (cep.length!== 8) return;
 
       fetch(`https://viacep.com.br/ws/${cep}/json/`)
-     .then(res => res.json())
-     .then(data => {
+    .then(res => res.json())
+    .then(data => {
           if (!data.erro) {
             document.getElementById('endereco').value = data.logradouro;
             document.getElementById('bairro').value = data.bairro;
@@ -855,24 +886,3 @@
 
       msg += `%0A*Itens do Pedido:*%0A${itens}%0A%0A`;
       msg += `*TOTAL: R$ ${total.toFixed(2)}*%0A`;
-      msg += `*Forma de Pagamento:* ${pagamento}%0A%0A`;
-      msg += `Aguardo confirmação!`;
-
-      let numeroWhatsApp = '+555185486974'; 
-      window.open(`https://wa.me/${numeroWhatsApp}?text=${msg}`, '_blank');
-
-      carrinho = [];
-      atualizarContador();
-      fecharCarrinho();
-      document.getElementById('formCheckout').reset();
-    }
-
-    window.onclick = function(event) {
-      let modalCarrinho = document.getElementById('modalCarrinho');
-      let modalAvaliacao = document.getElementById('modalAvaliacao');
-      if (event.target == modalCarrinho) fecharCarrinho();
-      if (event.target == modalAvaliacao) fecharAvaliacao();
-    }
-  </script>
-</body>
-</html>
