@@ -909,7 +909,112 @@
       if (event.target == modalAvaliacao) {
         fecharAvaliacao();
       }
-    }
+    }function carregarProdutos() {
+  let html = '';
+  produtos.forEach(p => {
+    let avaliacoes = getAvaliacoes(p.id);
+    let media = calcularMedia(avaliacoes);
+    let totalAv = avaliacoes.length;
+
+    html += `
+      <div class="produto-card" data-id="${p.id}">
+        <div class="produto-img"><img src="${p.img}" alt="${p.nome}"></div>
+        <div class="produto-info">
+          <h3>${p.nome}</h3>
+          <p>${p.desc}</p>
+          <div class="estrelas-media" onclick="toggleAvaliacoes(${p.id})">
+            <span class="estrelas">${gerarEstrelas(media)}</span>
+            <span>${media.toFixed(1)} (${totalAv} ${totalAv === 1 ? 'avaliação' : 'avaliações'})</span>
+          </div>
+          ${totalAv > 0 ? `<span class="ver-avaliacoes" onclick="toggleAvaliacoes(${p.id})">Ver avaliações ▼</span>` : ''}
+          
+          <div class="lista-avaliacoes-produto" id="avaliacoes-${p.id}">
+            ${renderizarAvaliacoesProduto(avaliacoes)}
+          </div>
+          
+          <div class="preco">R$ ${p.preco.toFixed(2)}</div>
+          <div class="btn-grupo">
+            <button class="add-carrinho" onclick="addCarrinho('${p.nome}', ${p.preco})">Adicionar</button>
+            <button class="btn-avaliar" onclick="abrirAvaliacao(${p.id})">⭐ Avaliar</button>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+  document.getElementById('lista-produtos').innerHTML = html;
+}
+
+function mostrarAvaliacoes(produtoId) {
+  let avaliacoes = getAvaliacoes(produtoId);
+  let html = '<h3 style="margin-bottom: 20px;">Avaliações dos Clientes</h3>';
+
+  if(avaliacoes.length === 0) {
+    html += '<p style="color: #666;">Seja o primeiro a avaliar!</p>';
+  } else {
+    avaliacoes.slice().reverse().forEach(av => {
+      html += `
+        <div class="avaliacao-item">
+          <div class="avaliacao-header">
+            <span class="avaliacao-nome">${av.nome}</span>
+            <span class="estrelas">${gerarEstrelas(av.estrelas)}</span>
+          </div>
+          ${av.comentario ? `<p>${av.comentario}</p>` : ''}
+          ${av.midia ? `<div class="avaliacao-midia">${av.tipo === 'video' ? `<video controls src="${av.midia}"></video>` : `<img src="${av.midia}" alt="Foto do cliente">`}</div>` : ''}
+          <small style="color: #999;">${av.data}</small>
+        </div>
+      `;
+    });
+  }
+  document.getElementById('lista-avaliacoes').innerHTML = html;
+}
+
+function salvarAvaliacao(e) {
+  e.preventDefault();
+
+  let produtoId = parseInt(document.getElementById('produto-id').value);
+  let nome = document.getElementById('nome-avaliador').value;
+  
+  let estrelaSelecionada = document.querySelector('input[name="estrelas"]:checked');
+  if(!estrelaSelecionada) {
+     alert('Por favor, selecione uma nota em estrelas!');
+     return;
+  }
+  let estrelas = parseInt(estrelaSelecionada.value);
+  let comentario = document.getElementById('comentario').value;
+  let arquivo = document.getElementById('midia-avaliacao').files[0];
+
+  let avaliacao = {
+    nome: nome,
+    estrelas: estrelas,
+    comentario: comentario,
+    data: new Date().toLocaleDateString('pt-BR'),
+    midia: null,
+    tipo: null
+  };
+
+  const finalizarSalvamento = () => {
+    salvarAvaliacaoStorage(produtoId, avaliacao);
+    alert('✓ Avaliação enviada com sucesso!');
+    document.getElementById('formAvaliacao').reset();
+    fecharAvaliacao();
+    
+    // Atualiza a lista da página principal e deixa visível o bloco de comentários do produto avaliado
+    carregarProdutos();
+    toggleAvaliacoes(produtoId); 
+  };
+
+  if(arquivo) {
+    let reader = new FileReader();
+    reader.onload = function(event) {
+      avaliacao.midia = event.target.result;
+      avaliacao.tipo = arquivo.type.startsWith('video') ? 'video' : 'image';
+      finalizarSalvamento();
+    };
+    reader.readAsDataURL(arquivo);
+  } else {
+    finalizarSalvamento();
+  }
+}
   </script>
 </body>
 </html>
