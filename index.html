@@ -21,7 +21,7 @@ nav{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;justify-content:s
 .container{max-width:1200px;margin:0 auto;padding:60px 20px}
 h2.titulo{text-align:center;font-size:2.5rem;margin-bottom:3rem;color:#0f172a;font-family:'Playfair Display',serif}
 .produtos{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px}
-.produto-card{background:white;border-radius:15px;overflow:hidden;box-shadow:0 5px 20px rgba(0,0,0,0.08);transition:all .3s}
+.produto-card{background:white;border-radius:15px;overflow:hidden;box-shadow:0 5px 20px rgba(0,0,0,0.08);transition:all .3s;cursor:pointer}
 .produto-card:hover{transform:translateY(-10px)}
 .produto-img{width:100%;height:300px;background:#ecf0f1}
 .produto-img img{width:100%;height:100%;object-fit:cover}
@@ -33,8 +33,8 @@ h2.titulo{text-align:center;font-size:2.5rem;margin-bottom:3rem;color:#0f172a;fo
 .btn-avaliar{background:#f39c12;color:white;border:none;padding:14px 20px;border-radius:10px;cursor:pointer;font-weight:600}
 .estrelas{color:#f39c12}
 .modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.8);overflow-y:auto}
-.modal-conteudo{background:white;margin:30px auto;padding:40px;width:90%;max-width:650px;border-radius:20px}
-.fechar{float:right;font-size:2.5rem;cursor:pointer;color:#999}
+.modal-conteudo{background:white;margin:30px auto;padding:40px;width:90%;max-width:650px;border-radius:20px;position:relative}
+.fechar{position:absolute;right:20px;top:10px;font-size:2.5rem;cursor:pointer;color:#999}
 .item-carrinho{display:flex;justify-content:space-between;padding:18px 0;border-bottom:1px solid #eee}
 .total{font-size:1.8rem;font-weight:700;margin:25px 0;color:#0f172a;text-align:right}
 .form-grupo{margin-bottom:18px}
@@ -47,38 +47,45 @@ h2.titulo{text-align:center;font-size:2.5rem;margin-bottom:3rem;color:#0f172a;fo
 .estrelas-input input{opacity:0;position:absolute}
 .estrelas-input label{color:#ddd;cursor:pointer}
 .estrelas-input input:checked ~ label,.estrelas-input label:hover,.estrelas-input label:hover ~ label{color:#f39c12}
+#modalProduto .modal-conteudo{max-width:900px;display:grid;grid-template-columns:1fr 1fr;gap:30px}
+@media(max-width:700px){#modalProduto .modal-conteudo{grid-template-columns:1fr}}
+#modalProduto img{width:100%;border-radius:15px;max-height:500px;object-fit:cover}
+.avaliacao-item{background:#f8fafc;padding:15px;border-radius:10px;margin-bottom:10px}
+.avaliacao-item img{width:100%;max-width:200px;border-radius:8px;margin-top:10px}
+#camera-area{background:#0f172a;border-radius:15px;padding:15px;margin:15px 0;display:none}
+#camPreview{width:100%;border-radius:10px;max-height:300px;background:#000}
+.cam-buttons{display:flex;gap:10px;margin-top:10px}
+.cam-buttons button{flex:1;padding:12px;border:none;border-radius:8px;font-weight:700;cursor:pointer}
+#foto-preview{width:100%;max-width:200px;border-radius:10px;margin-top:10px;display:none}
 footer{background:#0f172a;color:#e2e8f0;text-align:center;padding:40px 20px;margin-top:80px}
 </style>
 </head>
 <body>
-
 <section id="entrada">
-<div class="logo-texto">
-<h1>Alcind</h1>
-<div class="linha"></div>
-<span>móveis tec cell</span>
-</div>
+<div class="logo-texto"><h1>Alcind</h1><div class="linha"></div><span>móveis tec cell</span></div>
 <button class="btn-comecar" onclick="entrarNoSite()">Começar</button>
 </section>
-
 <div id="site">
-<header>
-<nav>
-<div class="logo-header"><h2>Alcind móveis tec cell</h2></div>
-<div class="nav-buttons"><button onclick="abrirCarrinho()">🛒 Carrinho <span id="carrinho-contador">0</span></button></div>
-</nav>
-</header>
-
-<div class="container">
-<h2 class="titulo">Nossos Produtos</h2>
-<div class="produtos" id="lista-produtos"></div>
+<header><nav><div class="logo-header"><h2>Alcind móveis tec cell</h2></div><div class="nav-buttons"><button onclick="abrirCarrinho()">🛒 Carrinho <span id="carrinho-contador">0</span></button></div></nav></header>
+<div class="container"><h2 class="titulo">Nossos Produtos</h2><div class="produtos" id="lista-produtos"></div></div>
+<footer><p>&copy; 2026 Alcind móveis tec cell</p><p>📍 Av. Protásio Alves, 1073 - Rio Branco - Porto Alegre/RS</p><p>📱 WhatsApp: (51) 98548-6974</p></footer>
 </div>
 
-<footer>
-<p>&copy; 2026 Alcind móveis tec cell - Todos os direitos reservados</p>
-<p>📍 Av. Protásio Alves, 1073 - Rio Branco - Porto Alegre/RS</p>
-<p>📱 WhatsApp: (51) 98548-6974</p>
-</footer>
+<!-- NOVO: MODAL DETALHE PRODUTO - LÈ OU KLIKE SOU PWODWI A -->
+<div id="modalProduto" class="modal">
+<div class="modal-conteudo">
+<span class="fechar" onclick="fecharProduto()">&times;</span>
+<div><img id="detalhe-img" src=""><div id="detalhe-avaliacoes-lista" style="margin-top:20px"></div></div>
+<div>
+<h2 id="detalhe-nome" style="font-family:'Playfair Display';color:#0f172a"></h2>
+<p id="detalhe-desc" style="color:#666;margin:15px 0"></p>
+<div id="detalhe-estrelas" class="estrelas" style="font-size:1.3rem"></div>
+<div id="detalhe-preco" class="preco" style="font-size:2.2rem"></div>
+<button class="btn-finalizar" onclick="comprarDetalhe()">Adicionar ao Carrinho</button>
+<button onclick="abrirAvaliacaoDoDetalhe()" style="width:100%;background:#f39c12;color:white;border:none;padding:14px;border-radius:10px;margin-top:10px;font-weight:600;cursor:pointer">⭐ Avaliar com Foto/Vídeo</button>
+<button onclick="fecharProduto()" style="width:100%;background:#e2e8f0;color:#0f172a;border:none;padding:12px;border-radius:10px;margin-top:10px;cursor:pointer">Voltar</button>
+</div>
+</div>
 </div>
 
 <!-- MODAL CARRINHO -->
@@ -90,33 +97,17 @@ footer{background:#0f172a;color:#e2e8f0;text-align:center;padding:40px 20px;marg
 <div class="total" id="total-carrinho">Total: R$ 0,00</div>
 <form id="formCheckout" onsubmit="finalizarPedido(event)">
 <div class="form-grupo"><label>Nome Completo *</label><input type="text" id="nome" required></div>
-<div class="form-grupo"><label>Telefone WhatsApp *</label><input type="tel" id="telefone" placeholder="(51) 99999-9999" required></div>
-<div class="form-grupo"><label>Tipo de Entrega *</label>
-<select id="tipo-entrega" required onchange="toggleEndereco()">
-<option value="">Selecione</option>
-<option value="Entrega no endereço">Entrega no endereço - Frete grátis POA</option>
-<option value="Retirada na loja">Retirada na Loja - Av. Protásio Alves, 1073</option>
-</select></div>
-<div id="info-retirada"><strong>📍 Retirada:</strong> Av. Protásio Alves, 1073 - Rio Branco - POA/RS<br><small>Seg a Sex 9h-18h | Sáb 9h-13h</small></div>
-<div id="campos-endereco">
-<div class="form-grupo"><label>CEP *</label><input type="text" id="cep" placeholder="00000-000" maxlength="9" onblur="buscarCEP()"></div>
-<div class="form-grupo"><label>Endereço *</label><input type="text" id="endereco"></div>
-<div class="form-grupo"><label>Número *</label><input type="text" id="numero"></div>
-<div class="form-grupo"><label>Bairro *</label><input type="text" id="bairro"></div>
-</div>
-<div class="form-grupo"><label>Pagamento *</label>
-<select id="pagamento" required>
-<option value="">Selecione</option>
-<option value="PIX - 5% de desconto">PIX - 5% de desconto</option>
-<option value="Cartão de Crédito - até 12x">Cartão de Crédito - até 12x</option>
-<option value="Boleto Bancário">Boleto Bancário</option>
-</select></div>
+<div class="form-grupo"><label>Telefone WhatsApp *</label><input type="tel" id="telefone" required></div>
+<div class="form-grupo"><label>Tipo de Entrega *</label><select id="tipo-entrega" required onchange="toggleEndereco()"><option value="">Selecione</option><option value="Entrega no endereço">Entrega - Frete grátis POA</option><option value="Retirada na loja">Retirada na Loja</option></select></div>
+<div id="info-retirada"><strong>📍 Retirada:</strong> Av. Protásio Alves, 1073</div>
+<div id="campos-endereco"><div class="form-grupo"><label>CEP *</label><input type="text" id="cep" maxlength="9" onblur="buscarCEP()"></div><div class="form-grupo"><label>Endereço *</label><input type="text" id="endereco"></div><div class="form-grupo"><label>Número *</label><input type="text" id="numero"></div><div class="form-grupo"><label>Bairro *</label><input type="text" id="bairro"></div></div>
+<div class="form-grupo"><label>Pagamento *</label><select id="pagamento" required><option value="">Selecione</option><option value="PIX">PIX - 5% desconto</option><option value="Cartão">Cartão até 12x</option><option value="Boleto">Boleto</option></select></div>
 <button type="submit" class="btn-finalizar">Finalizar via WhatsApp</button>
 </form>
 </div>
 </div>
 
-<!-- MODAL AVALIAÇÃO -->
+<!-- MODAL AVALIAÇÃO COM CAMERA - PA BEZWEN ARCHIV -->
 <div id="modalAvaliacao" class="modal">
 <div class="modal-conteudo">
 <span class="fechar" onclick="fecharAvaliacao()">&times;</span>
@@ -124,49 +115,63 @@ footer{background:#0f172a;color:#e2e8f0;text-align:center;padding:40px 20px;marg
 <form id="formAvaliacao" onsubmit="salvarAvaliacao(event)">
 <input type="hidden" id="produto-id">
 <div class="form-grupo"><label>Seu Nome *</label><input type="text" id="nome-avaliador" required></div>
-<div class="form-grupo"><label>Sua Nota *</label>
-<div class="estrelas-input">
-<input type="radio" id="estrela5" name="estrelas" value="5" required><label for="estrela5">★</label>
-<input type="radio" id="estrela4" name="estrelas" value="4"><label for="estrela4">★</label>
-<input type="radio" id="estrela3" name="estrelas" value="3"><label for="estrela3">★</label>
-<input type="radio" id="estrela2" name="estrelas" value="2"><label for="estrela2">★</label>
-<input type="radio" id="estrela1" name="estrelas" value="1"><label for="estrela1">★</label>
-</div></div>
-<div class="form-grupo"><label>Comentário</label><textarea id="comentario" placeholder="Conte sua experiência..."></textarea></div>
+<div class="form-grupo"><label>Sua Nota *</label><div class="estrelas-input"><input type="radio" id="estrela5" name="estrelas" value="5" required><label for="estrela5">★</label><input type="radio" id="estrela4" name="estrelas" value="4"><label for="estrela4">★</label><input type="radio" id="estrela3" name="estrelas" value="3"><label for="estrela3">★</label><input type="radio" id="estrela2" name="estrelas" value="2"><label for="estrela2">★</label><input type="radio" id="estrela1" name="estrelas" value="1"><label for="estrela1">★</label></div></div>
+<div class="form-grupo"><label>Comentário</label><textarea id="comentario"></textarea></div>
+<div class="form-grupo"><label>📸 Foto / 🎥 Vídeo com Câmera Direta</label>
+<button type="button" onclick="ligarCamera()" style="width:100%;padding:12px;background:#0f172a;color:white;border:none;border-radius:8px;cursor:pointer">📷 Abrir Câmera</button>
+<div id="camera-area"><video id="camPreview" autoplay playsinline muted></video><canvas id="camCanvas" style="display:none"></canvas><div class="cam-buttons"><button type="button" onclick="tirarFoto()" style="background:#d4af37;color:#0f172a">📸 Tirar Foto</button><button type="button" id="btnGravar" onclick="gravarVideo()" style="background:#e74c3c;color:white">🔴 Gravar Vídeo</button></div><button type="button" onclick="desligarCamera()" style="width:100%;margin-top:10px;background:#e2e8f0;border:none;padding:8px;border-radius:8px;cursor:pointer">Fechar Câmera</button></div>
+<img id="foto-preview" src=""><video id="video-preview" controls style="width:100%;max-width:300px;border-radius:10px;margin-top:10px;display:none"></video>
+</div>
 <button type="submit" class="btn-finalizar">Enviar Avaliação</button>
 </form>
 </div>
 </div>
 
 <script>
-let carrinho=[];
+let carrinho=[];let produtoAtual=null;let streamCamera=null;let mediaRecorder=null;let chunksVideo=[];let fotoBase64=null;let videoBase64=null;
 const produtos=[
-{id:1,nome:'Poltrona Design Madeira Cinza',preco:1499,img:'poltrona-madeira.jpg',desc:'Estrutura madeira maciça, tecido suede premium'},
-{id:2,nome:'Poltrona Design Madeira Clara',preco:1699,img:'poltronas-design-madeira.jpg',desc:'Design escandinavo, super confortável - 2 unidades'},
-{id:3,nome:'Conjunto 4 Poltronas Pretas',preco:2599,img:'poltronas-pretas.jpg',desc:'4 poltronas individuais, tecido suede preto'},
-{id:4,nome:'Sofá de Canto Marrom 5 Lugares',preco:2999,img:'sofa-canto-marrom.jpg',desc:'Tecido suede marrom, almofadas com botão - MAIS VENDIDO'},
-{id:5,nome:'Sofá de Canto Cinza 6 Lugares',preco:4299,img:'sofa-canto-marrom.jpg',desc:'Super espaçoso, use foto marrom como modelo'},
-{id:6,nome:'Sofá Verde Musgo - Encomenda',preco:3899,img:'poltrona-madeira.jpg',desc:'Veludo verde musgo - faça seu pedido'},
-{id:7,nome:'Smartphone 128GB - Tec Cell',preco:1899,img:'smartphone-128-gb.jpg',desc:'Tela 6.5, câmera tripla'},
-{id:8,nome:'Capa Celular Premium',preco:89.90,img:'capa-celular-premium.jpg',desc:'Silicone anti-impacto'},
-{id:9,nome:'Microfone USB Condensador',preco:299,img:'microfone-usb-condensador.jpg',desc:'Profissional para gravação'}
+{id:1,nome:'Poltrona Design Madeira Cinza',preco:1499,img:'poltrona-madeira.jpg',desc:'Estrutura madeira maciça, tecido suede premium. Super confortável.'},
+{id:2,nome:'Poltrona Design Madeira Clara',preco:1699,img:'poltronas-design-madeira.jpg',desc:'Design escandinavo, super confortável - 2 unidades.'},
+{id:3,nome:'Conjunto 4 Poltronas Pretas',preco:2599,img:'poltronas-pretas.jpg',desc:'4 poltronas individuais, tecido suede preto.'},
+{id:4,nome:'Sofá de Canto Marrom 5 Lugares',preco:2999,img:'sofa-canto-marrom.jpg',desc:'Tecido suede marrom, almofadas com botão - MAIS VENDIDO.'},
+{id:5,nome:'Sofá de Canto Cinza 6 Lugares',preco:1299,img:'sofa-canto-marrom.jpg',desc:'Super espaçoso, 6 lugares. Sob encomenda.'},
+{id:6,nome:'Sofá Verde Musgo - Encomenda',preco:899,img:'poltrona-madeira.jpg',desc:'Veludo verde musgo.'},
+{id:7,nome:'Smartphone 128GB - Tec Cell',preco:1899,img:'smartphone-128-gb.jpg',desc:'Tela 6.5, câmera tripla.'},
+{id:8,nome:'Capa Celular Premium',preco:89.90,img:'capa-celular-premium.jpg',desc:'Silicone anti-impacto.'},
+{id:9,nome:'Microfone USB Condensador',preco:299,img:'microfone-usb-condensador.jpg',desc:'Profissional para gravação.'}
 ];
-
 function entrarNoSite(){document.getElementById('entrada').style.display='none';document.getElementById('site').style.display='block';carregarProdutos();}
 function carregarProdutos(){
-let html='';
-produtos.forEach(p=>{
-let avs=getAvaliacoes(p.id);
-let media=avs.length?avs.reduce((s,a)=>s+a.estrelas,0)/avs.length:0;
-html+=`<div class="produto-card"><div class="produto-img"><img src="${p.img}" alt="${p.nome}"></div><div class="produto-info"><h3>${p.nome}</h3><p>${p.desc}</p><div class="estrelas">${'★'.repeat(Math.round(media))}${'☆'.repeat(5-Math.round(media))} ${media.toFixed(1)} (${avs.length})</div><div class="preco">R$ ${p.preco.toFixed(2)}</div><div class="btn-grupo"><button class="add-carrinho" onclick="addCarrinho('${p.nome}',${p.preco})">Adicionar</button><button class="btn-avaliar" onclick="abrirAvaliacao(${p.id})">⭐ Avaliar</button></div></div></div>`;
+let html='';produtos.forEach(p=>{
+let avs=getAvaliacoes(p.id);let media=avs.length?avs.reduce((s,a)=>s+a.estrelas,0)/avs.length:0;
+html+=`<div class="produto-card" onclick="abrirProduto(${p.id})"><div class="produto-img"><img src="${p.img}" alt="${p.nome}"></div><div class="produto-info"><h3>${p.nome}</h3><p>${p.desc.substring(0,60)}...</p><div class="estrelas">${'★'.repeat(Math.round(media))}${'☆'.repeat(5-Math.round(media))} ${media.toFixed(1)} (${avs.length})</div><div class="preco">R$ ${p.preco.toFixed(2)}</div><div class="btn-grupo"><button class="add-carrinho" onclick="event.stopPropagation();addCarrinho('${p.nome}',${p.preco})">Adicionar</button><button class="btn-avaliar" onclick="event.stopPropagation();abrirAvaliacao(${p.id})">⭐</button></div></div></div>`;
 });
 document.getElementById('lista-produtos').innerHTML=html;
 }
+function abrirProduto(id){
+produtoAtual=produtos.find(x=>x.id==id);
+document.getElementById('detalhe-img').src=produtoAtual.img;
+document.getElementById('detalhe-nome').textContent=produtoAtual.nome;
+document.getElementById('detalhe-desc').textContent=produtoAtual.desc;
+document.getElementById('detalhe-preco').textContent='R$ '+produtoAtual.preco.toFixed(2);
+let avs=getAvaliacoes(id);let media=avs.length?avs.reduce((s,a)=>s+a.estrelas,0)/avs.length:0;
+document.getElementById('detalhe-estrelas').innerHTML='★'.repeat(Math.round(media))+'☆'.repeat(5-Math.round(media))+' '+media.toFixed(1)+' ('+avs.length+')';
+let listaHtml='<h4>Avaliações:</h4>';if(avs.length==0)listaHtml+='<p style="color:#999">Nenhuma ainda</p>';else avs.slice(-3).reverse().forEach(a=>{listaHtml+=`<div class="avaliacao-item"><strong>${a.nome}</strong> - ${'★'.repeat(a.estrelas)}<br><small>${a.data}</small><p>${a.comentario||''}</p>${a.foto?`<img src="${a.foto}">`:''}${a.video?`<video src="${a.video}" controls style="width:100%;max-width:200px;border-radius:8px;margin-top:8px"></video>`:''}</div>`;});
+document.getElementById('detalhe-avaliacoes-lista').innerHTML=listaHtml;
+document.getElementById('modalProduto').style.display='block';
+}
+function fecharProduto(){document.getElementById('modalProduto').style.display='none';}
+function comprarDetalhe(){if(produtoAtual){addCarrinho(produtoAtual.nome,produtoAtual.preco);fecharProduto();}}
+function abrirAvaliacaoDoDetalhe(){let id=produtoAtual.id;fecharProduto();abrirAvaliacao(id);}
 function getAvaliacoes(id){let d=localStorage.getItem('avaliacoes_'+id);return d?JSON.parse(d):[];}
 function salvarAvaliacaoStorage(id,av){let a=getAvaliacoes(id);a.push(av);localStorage.setItem('avaliacoes_'+id,JSON.stringify(a));}
-function abrirAvaliacao(id){let p=produtos.find(x=>x.id==id);document.getElementById('titulo-avaliacao').textContent='Avaliar: '+p.nome;document.getElementById('produto-id').value=id;document.getElementById('formAvaliacao').reset();document.getElementById('modalAvaliacao').style.display='block';}
-function fecharAvaliacao(){document.getElementById('modalAvaliacao').style.display='none';}
-function salvarAvaliacao(e){e.preventDefault();let id=parseInt(document.getElementById('produto-id').value);let nome=document.getElementById('nome-avaliador').value;let sel=document.querySelector('input[name="estrelas"]:checked');if(!sel){alert('Escolha estrelas!');return;}let av={nome:nome,estrelas:parseInt(sel.value),comentario:document.getElementById('comentario').value,data:new Date().toLocaleDateString('pt-BR')};salvarAvaliacaoStorage(id,av);alert('✓ Avaliação enviada!');fecharAvaliacao();carregarProdutos();}
+function abrirAvaliacao(id){let p=produtos.find(x=>x.id==id);document.getElementById('titulo-avaliacao').textContent='Avaliar: '+p.nome;document.getElementById('produto-id').value=id;document.getElementById('formAvaliacao').reset();fotoBase64=null;videoBase64=null;document.getElementById('foto-preview').style.display='none';document.getElementById('video-preview').style.display='none';document.getElementById('camera-area').style.display='none';desligarCamera();document.getElementById('modalAvaliacao').style.display='block';}
+function fecharAvaliacao(){desligarCamera();document.getElementById('modalAvaliacao').style.display='none';}
+async function ligarCamera(){try{streamCamera=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'},audio:true});document.getElementById('camPreview').srcObject=streamCamera;document.getElementById('camera-area').style.display='block';}catch(e){alert('Erro câmera: '+e.message);}}
+function desligarCamera(){if(streamCamera){streamCamera.getTracks().forEach(t=>t.stop());streamCamera=null;}document.getElementById('camPreview').srcObject=null;}
+function tirarFoto(){let video=document.getElementById('camPreview');let canvas=document.getElementById('camCanvas');canvas.width=video.videoWidth;canvas.height=video.videoHeight;canvas.getContext('2d').drawImage(video,0,0);fotoBase64=canvas.toDataURL('image/jpeg',0.8);document.getElementById('foto-preview').src=fotoBase64;document.getElementById('foto-preview').style.display='block';videoBase64=null;document.getElementById('video-preview').style.display='none';alert('✓ Foto capturada!');desligarCamera();document.getElementById('camera-area').style.display='none';}
+function gravarVideo(){let btn=document.getElementById('btnGravar');if(mediaRecorder && mediaRecorder.state=='recording'){mediaRecorder.stop();btn.textContent='🔴 Gravar Vídeo';return;}chunksVideo=[];mediaRecorder=new MediaRecorder(streamCamera);mediaRecorder.ondataavailable=e=>{if(e.data.size>0)chunksVideo.push(e.data)};mediaRecorder.onstop=()=>{let blob=new Blob(chunksVideo,{type:'video/webm'});let reader=new FileReader();reader.onload=()=>{videoBase64=reader.result;document.getElementById('video-preview').src=videoBase64;document.getElementById('video-preview').style.display='block';fotoBase64=null;document.getElementById('foto-preview').style.display='none';alert('✓ Vídeo gravado!');desligarCamera();document.getElementById('camera-area').style.display='none';};reader.readAsDataURL(blob);};mediaRecorder.start();btn.textContent='⏹️ Parar';}
+function salvarAvaliacao(e){e.preventDefault();let id=parseInt(document.getElementById('produto-id').value);let nome=document.getElementById('nome-avaliador').value;let sel=document.querySelector('input[name="estrelas"]:checked');if(!sel){alert('Escolha estrelas!');return;}let av={nome:nome,estrelas:parseInt(sel.value),comentario:document.getElementById('comentario').value,data:new Date().toLocaleDateString('pt-BR'),foto:fotoBase64,video:videoBase64};salvarAvaliacaoStorage(id,av);alert('✓ Avaliação enviada!');fecharAvaliacao();carregarProdutos();if(produtoAtual && produtoAtual.id==id)abrirProduto(id);}
 function addCarrinho(n,p){carrinho.push({nome:n,preco:p});document.getElementById('carrinho-contador').textContent=carrinho.length;alert('✓ '+n+' adicionado!');}
 function abrirCarrinho(){if(carrinho.length==0){alert('Carrinho vazio');return;}let html='';let total=0;carrinho.forEach((it,i)=>{html+=`<div class="item-carrinho"><span>${it.nome}</span><span>R$ ${it.preco.toFixed(2)} <button onclick="removerItem(${i})" style="margin-left:10px;color:red;background:none;border:none;cursor:pointer">✕</button></span></div>`;total+=it.preco;});document.getElementById('itens-carrinho').innerHTML=html;document.getElementById('total-carrinho').textContent='Total: R$ '+total.toFixed(2);document.getElementById('modalCarrinho').style.display='block';}
 function fecharCarrinho(){document.getElementById('modalCarrinho').style.display='none';}
@@ -174,7 +179,7 @@ function removerItem(i){carrinho.splice(i,1);document.getElementById('carrinho-c
 function toggleEndereco(){let t=document.getElementById('tipo-entrega').value;document.getElementById('campos-endereco').style.display=t=='Retirada na loja'?'none':'block';document.getElementById('info-retirada').style.display=t=='Retirada na loja'?'block':'none';}
 function buscarCEP(){let cep=document.getElementById('cep').value.replace(/\D/g,'');if(cep.length!=8)return;fetch(`https://viacep.com.br/ws/${cep}/json/`).then(r=>r.json()).then(d=>{if(!d.erro){document.getElementById('endereco').value=d.logradouro;document.getElementById('bairro').value=d.bairro;}});}
 function finalizarPedido(e){e.preventDefault();let nome=document.getElementById('nome').value;let tel=document.getElementById('telefone').value;let tipo=document.getElementById('tipo-entrega').value;let pag=document.getElementById('pagamento').value;let total=carrinho.reduce((s,i)=>s+i.preco,0);let itens=carrinho.map(i=>`• ${i.nome}: R$ ${i.preco.toFixed(2)}`).join('%0A');let msg=`*NOVO PEDIDO - ALCIND*%0A*Cliente:* ${nome}%0A*Tel:* ${tel}%0A*Entrega:* ${tipo}%0A%0A*Itens:*%0A${itens}%0A%0A*TOTAL: R$ ${total.toFixed(2)}*%0A*Pag:* ${pag}`;let zap='5551985486974';window.open(`https://wa.me/${zap}?text=${msg}`,'_blank');carrinho=[];document.getElementById('carrinho-contador').textContent='0';fecharCarrinho();}
-window.onclick=function(ev){if(ev.target==document.getElementById('modalCarrinho'))fecharCarrinho();if(ev.target==document.getElementById('modalAvaliacao'))fecharAvaliacao();}
+window.onclick=function(ev){if(ev.target==document.getElementById('modalCarrinho'))fecharCarrinho();if(ev.target==document.getElementById('modalAvaliacao'))fecharAvaliacao();if(ev.target==document.getElementById('modalProduto'))fecharProduto();}
 </script>
 </body>
 </html>
